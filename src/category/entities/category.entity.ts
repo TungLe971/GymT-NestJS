@@ -7,19 +7,19 @@ export class Category {
     id: number;
 
     @Column()
-    name:string;
+    name: string;
 
     @Column()
-    description:string;
+    description: string;
 
     @Column({type:"int", default:1})
-    status:number;
+    status: number;
 
     @CreateDateColumn()
-    created_at:Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updated_at:Date;
+    updated_at: Date;
 
     @OneToMany(()=>Post, (post) => post.category)
     posts:Post[]
