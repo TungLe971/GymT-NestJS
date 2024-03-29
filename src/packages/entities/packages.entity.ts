@@ -1,17 +1,23 @@
-import { Column, Entity } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Packages{
+
+    @PrimaryGeneratedColumn()
+    id_packages: number;
+    
     @Column()
-    packages_day: number;
+    name_packages: string;
 
     @Column()
-	packages_basic: number;
+	gia_packages: number;
 
-    @Column()
-	packages_premium: number;
+    @Column({ nullable: true, default: '...' })
+	note_packages: string;
 
-    @Column()
-	packages_pro: number;
-
+    @CreateDateColumn()
+    ngay_tao_packages: Date;
+    
+    @UpdateDateColumn()
+    ngay_cap_nhap_packages: Date;
 }

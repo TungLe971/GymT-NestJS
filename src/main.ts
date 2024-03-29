@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
-async function bootstrap() {
+async function main() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const config = new DocumentBuilder()
   .setTitle('GymT APIs')
@@ -12,6 +12,8 @@ async function bootstrap() {
   .setVersion('1.0')
   .addTag('Auth')
   .addTag('Users')
+  .addTag('Members')
+  .addTag('Packages')
   .addBearerAuth()
   .build();
   const documnent = SwaggerModule.createDocument(app, config);
@@ -19,6 +21,6 @@ async function bootstrap() {
   app.enableCors();
   console.log(join(__dirname, '../../uploads'))
   app.useStaticAssets(join(__dirname, '../../uploads'));
-  await app.listen(3000);
+  await app.listen(5000);
 }
-bootstrap();
+main();

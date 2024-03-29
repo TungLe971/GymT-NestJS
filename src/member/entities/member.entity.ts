@@ -1,11 +1,5 @@
 import { Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Entity } from "typeorm";
 
-export enum Gender {
-    Male = "male",
-    Female = "female",
-    Other = "other",
-}
-
 @Entity()
 export class Member {
     @PrimaryGeneratedColumn()
@@ -17,8 +11,8 @@ export class Member {
     @Column()
     ngay_sinh_hv: Date;
 
-    @Column({ type: "enum", enum: Gender, default: Gender.Other })
-    gioi_tinh_hv: Gender;
+    @Column()
+    gioi_tinh_hv: string;
 
     @Column()
     tuoi_hv: number;
@@ -32,19 +26,19 @@ export class Member {
     @Column()
     bien_xe_hv: string;
 
-    @Column()
+    @Column({ nullable: true, default: 0 })
     diem_tich_luy: number;
 
     @Column()
     email_hv: string;
 
-    @Column()
+    @Column({ nullable: true, default: 0 })
     chieu_cao: number;
 
-    @Column()
+    @Column({ nullable: true, default: 0 })
     can_nang: number;
 
-    @Column()
+    @Column({ nullable: true, default: 0 })
     phan_tram_mo: number;
 
     @CreateDateColumn()
