@@ -15,9 +15,9 @@ export class Packages{
     @Column({ nullable: true, default: '...' })
 	note_packages: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ type: "date" })
     ngay_tao_packages: Date;
     
-    @UpdateDateColumn()
+    @UpdateDateColumn({ type: "date" })
     ngay_cap_nhap_packages: Date;
 }

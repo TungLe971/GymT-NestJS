@@ -8,7 +8,7 @@ export class Member {
     @Column()
     name_hv: string;
 
-    @Column()
+    @Column({ type: "date" })
     ngay_sinh_hv: Date;
 
     @Column()
@@ -41,9 +41,9 @@ export class Member {
     @Column({ nullable: true, default: 0 })
     phan_tram_mo: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ type: "date" })
     ngay_tao_hv: Date;
     
-    @UpdateDateColumn()
+    @UpdateDateColumn({ type: "date" })
     ngay_cap_nhap_hv: Date;
 }

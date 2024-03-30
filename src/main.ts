@@ -13,7 +13,8 @@ async function main() {
   .addTag('Auth')
   .addTag('Users')
   .addTag('Members')
-  .addTag('Packages')
+  .addTag('Packagess')
+  .addTag('Staffs')
   .addBearerAuth()
   .build();
   const documnent = SwaggerModule.createDocument(app, config);

@@ -1,0 +1,43 @@
+import { Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Entity } from "typeorm";
+
+@Entity()
+export class Staff {
+    @PrimaryGeneratedColumn()
+    id_nv: number;
+
+    @Column()
+    name_nv: string;
+
+    @Column()
+    gioi_tinh_nv: string;
+
+    @Column({ type: "date" })
+    ngay_sinh_nv: Date;
+
+    @Column()
+    tuoi_nv: number;
+
+    @Column()
+    sdt_nv: string;
+    
+    @Column()
+    tcccd_nv: string;
+
+    @Column()
+    bien_xe_nv: string;
+
+    @Column()
+    dia_chi_nv: string;
+
+    @Column()
+    chuc_vu: string;
+
+    @Column()
+    email_nv: string;
+
+    @CreateDateColumn({ type: "date" })
+    ngay_tao_nv: Date;
+    
+    @UpdateDateColumn({ type: "date" })
+    ngay_cap_nhap_nv: Date;
+}
