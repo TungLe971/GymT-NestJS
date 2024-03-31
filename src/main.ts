@@ -15,6 +15,8 @@ async function main() {
   .addTag('Members')
   .addTag('Packagess')
   .addTag('Staffs')
+  .addTag('Equipments')
+  .addTag('Foods')
   .addBearerAuth()
   .build();
   const documnent = SwaggerModule.createDocument(app, config);

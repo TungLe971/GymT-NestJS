@@ -35,9 +35,9 @@ export class Staff {
     @Column()
     email_nv: string;
 
-    @CreateDateColumn({ type: "date" })
+    @CreateDateColumn()
     ngay_tao_nv: Date;
     
-    @UpdateDateColumn({ type: "date" })
+    @UpdateDateColumn()
     ngay_cap_nhap_nv: Date;
 }

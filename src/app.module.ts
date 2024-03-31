@@ -14,8 +14,8 @@ import { StaffModule } from './staff/staff.module';
 // import { EventModule } from './event/event.module';
 // import { WardrobeModule } from './wardrobe/wardrobe.module';
 // import { SalaryModule } from './salary/salary.module';
-// import { FoodModule } from './food/food.module';
-// import { EquipmentModule } from './equipment/equipment.module';
+import { FoodModule } from './food/food.module';
+import { EquipmentModule } from './equipment/equipment.module';
 // import { GiftModule } from './gift/gift.module';
 // import { ScheduleController } from './schedule/schedule.controller';
 // import { ScheduleModule } from './schedule/schedule.module';
@@ -35,8 +35,8 @@ import { PackagesModule } from './packages/packages.module';
     // EventModule,
     // WardrobeModule,
     // SalaryModule,
-    // FoodModule,
-    // EquipmentModule,
+    FoodModule,
+    EquipmentModule,
     // GiftModule,
     // ScheduleModule,
     // NotificationModule,

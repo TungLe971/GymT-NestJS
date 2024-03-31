@@ -5,7 +5,6 @@ import { Repository, DeleteResult, In, Like, UpdateResult } from 'typeorm';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
 import { FilterMemberDto } from './dto/filter-member.dto';
-// import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class MemberService {
@@ -46,7 +45,6 @@ export class MemberService {
     }
 
     async create(createMemberDto: CreateMemberDto): Promise<Member> {
-        // const hashPassword = await bcrypt.hash(createMemberDto.password, 10);
         return await this.memberRepository.save(createMemberDto);
     }
 
