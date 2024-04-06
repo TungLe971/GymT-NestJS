@@ -6,6 +6,8 @@ export class CreatePostDto {
     @IsNotEmpty()
     title: string;
 
+    summary: string;
+
     @IsNotEmpty()
     description: string;
 

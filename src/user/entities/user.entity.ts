@@ -1,5 +1,5 @@
 import { Post } from 'src/post/entities/post.entity';
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -30,7 +30,7 @@ export class User {
   @CreateDateColumn()
   created_at: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updated_at: Date;
 
   @OneToMany(() => Post, (post) => post.user)

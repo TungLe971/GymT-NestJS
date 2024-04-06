@@ -1,4 +1,5 @@
-import { Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Entity } from "typeorm";
+import { Card } from "src/card/entities/card.entity";
+import { Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Entity, OneToOne } from "typeorm";
 
 @Entity()
 export class Member {
@@ -46,4 +47,7 @@ export class Member {
     
     @UpdateDateColumn()
     ngay_cap_nhap_hv: Date;
+
+    @OneToOne(() => Card, (card) => card.id_hv)
+    card: Card[]
 }

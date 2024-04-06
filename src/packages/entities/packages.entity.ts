@@ -20,4 +20,6 @@ export class Packages{
     
     @UpdateDateColumn()
     ngay_cap_nhap_packages: Date;
+
+
 }

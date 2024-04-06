@@ -27,6 +27,12 @@ export class UserController {
     }
 
     @UseGuards(AuthGuard)
+    @Get('profile')
+    profile(@Req() req:any): Promise<User> {
+        return this.userService.findOne(Number(req.user_data.id));
+    }
+
+    @UseGuards(AuthGuard)
     @Get(':id')
     findOne(@Param('id') id: string): Promise<User> {
         return this.userService.findOne(Number(id));
@@ -77,6 +83,7 @@ export class UserController {
             }
         }
     }))
+
     uploadAvatar(@Req() req: any, @UploadedFile() file: Express.Multer.File) {
         console.log("upload avatar");
         console.log('user data', req.user_data)
@@ -88,6 +95,6 @@ export class UserController {
         if (!file) {
             throw new BadRequestException('File is required')
         }
-        return this.userService.updateAvatar(req.user_data.id, file.destination + '/' + file.filename);
+        return this.userService.updateAvatar(req.user_data.id, file.fieldname + '/' + file.filename);
     }
 }

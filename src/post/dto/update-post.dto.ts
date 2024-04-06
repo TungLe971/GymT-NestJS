@@ -3,6 +3,8 @@ import { Category } from "src/category/entities/category.entity";
 export class UpdatePostDto {
     title: string;
 
+    summary: string;
+
     description: string;
 
     thumbnail: string;

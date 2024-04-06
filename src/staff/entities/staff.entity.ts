@@ -40,4 +40,5 @@ export class Staff {
     
     @UpdateDateColumn()
     ngay_cap_nhap_nv: Date;
+
 }

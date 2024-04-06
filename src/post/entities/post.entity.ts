@@ -11,6 +11,9 @@ export class Post {
     title: string;
 
     @Column()
+    summary: string;
+
+    @Column({type: "longtext"})
     description: string;
 
     @Column()
