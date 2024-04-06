@@ -10,7 +10,7 @@ import { PostModule } from './post/post.module';
 import { CategoryModule } from './category/category.module';
 import { MemberModule } from './member/member.module';
 import { StaffModule } from './staff/staff.module';
-// import { CardModule } from './card/card.module';
+import { CardModule } from './card/card.module';
 // import { EventModule } from './event/event.module';
 // import { WardrobeModule } from './wardrobe/wardrobe.module';
 // import { SalaryModule } from './salary/salary.module';
@@ -31,7 +31,7 @@ import { PackagesModule } from './packages/packages.module';
     CategoryModule,
     MemberModule,
     StaffModule,
-    // CardModule,
+    CardModule,
     // EventModule,
     // WardrobeModule,
     // SalaryModule,
