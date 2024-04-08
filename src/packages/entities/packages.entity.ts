@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Card } from "src/card/entities/card.entity";
+import { Column, CreateDateColumn, Entity,  ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Packages{
@@ -21,5 +22,6 @@ export class Packages{
     @UpdateDateColumn()
     ngay_cap_nhap_packages: Date;
 
-
+    @ManyToMany(() => Card, card => card.packages)
+    card: Card[];
 }

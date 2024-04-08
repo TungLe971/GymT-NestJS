@@ -1,4 +1,5 @@
 import { Card } from "src/card/entities/card.entity";
+import { User } from "src/user/entities/user.entity";
 import { Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Entity, OneToOne } from "typeorm";
 
 @Entity()
@@ -48,6 +49,9 @@ export class Member {
     @UpdateDateColumn()
     ngay_cap_nhap_hv: Date;
 
-    @OneToOne(() => Card, (card) => card.id_hv)
-    card: Card[]
+    @OneToOne(() => Card)
+    card: Card;
+
+    @OneToOne(() => User)
+    user: User;
 }

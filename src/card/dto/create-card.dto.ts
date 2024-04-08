@@ -12,9 +12,9 @@ export class CreateCardDto {
     status: number;
     
     @IsNotEmpty()
-    members: Member;
+    member: Member;
   
-    staffs: Staff;
+    staff: Staff;
     
     @IsNotEmpty()
     packages: Packages;  

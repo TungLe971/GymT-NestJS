@@ -1,7 +1,7 @@
 import { Member } from 'src/member/entities/member.entity';
 import { Packages } from 'src/packages/entities/packages.entity';
 import { Staff } from 'src/staff/entities/staff.entity';
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, ManyToMany} from 'typeorm';
 
 @Entity()
 export class Card {
@@ -24,14 +24,11 @@ export class Card {
   updated_at: Date;
 
   @OneToOne(() => Member)
-  @JoinColumn({ name: "id_hv" }) 
-  id_hv: number;
+  member: Member;
 
-  @OneToOne(() => Staff, { nullable: true }) 
-  @JoinColumn({ name: "id_nv", referencedColumnName: "id_nv" })
-  id_nv: number | null;
+  @ManyToMany(() => Staff, staff => staff.card, { nullable: true }) 
+  staff: Staff;
 
-  @OneToOne(() => Packages)
-  @JoinColumn({ name: "id_packages" }) 
-  id_packages: number;
+  @ManyToMany(() => Packages, packages => packages.card)
+  packages: Packages;
 }

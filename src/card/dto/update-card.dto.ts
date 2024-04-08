@@ -1,3 +1,7 @@
+import { Member } from "src/member/entities/member.entity";
+import { Packages } from "src/packages/entities/packages.entity";
+import { Staff } from "src/staff/entities/staff.entity";
+
 export class UpdateCardDto {
 
   ngay_start: Date;
@@ -6,10 +10,10 @@ export class UpdateCardDto {
 
   status: number;
 
-  id_hv: number;
+  member: Member;
 
-  id_packages: number;  
+  packages: Packages;  
   
-  id_nv: number;
+  staff: Staff;
 
 }

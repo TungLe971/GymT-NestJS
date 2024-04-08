@@ -1,13 +1,14 @@
+
 export class FilterCardDto {
     page:string;
 
     items_per_page:string;
 
-    search:string;
+    search:number;
 
-    id_nv:number;
+    member:string;
 
-    id_hv:number;
+    staff:string;
 
-    id_packages: number;
+    packages: string;
 }
