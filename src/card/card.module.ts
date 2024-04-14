@@ -7,11 +7,12 @@ import { Staff } from 'src/staff/entities/staff.entity';
 import { Packages } from 'src/packages/entities/packages.entity';
 import { ConfigModule } from '@nestjs/config';
 import { Card } from './entities/card.entity';
+import { Classroom } from 'src/classroom/entities/classroom.entity';
 
 
 @Module({
   imports:[
-    TypeOrmModule.forFeature([Card, Member, Staff, Packages]),
+    TypeOrmModule.forFeature([Card, Member, Staff, Packages,Classroom]),
     ConfigModule
 
   ],

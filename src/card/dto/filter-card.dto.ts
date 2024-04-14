@@ -11,4 +11,6 @@ export class FilterCardDto {
     staff:string;
 
     packages: string;
+
+    classroom: string;
 }

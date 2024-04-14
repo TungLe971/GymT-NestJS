@@ -1,7 +1,8 @@
+import { Classroom } from 'src/classroom/entities/classroom.entity';
 import { Member } from 'src/member/entities/member.entity';
 import { Packages } from 'src/packages/entities/packages.entity';
 import { Staff } from 'src/staff/entities/staff.entity';
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, ManyToMany} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn,  ManyToMany, JoinTable, JoinColumn, ManyToOne} from 'typeorm';
 
 @Entity()
 export class Card {
@@ -17,18 +18,22 @@ export class Card {
   @Column({ type:"int", default: 1 })
   status: number;
 
-  @CreateDateColumn()
-  created_at: Date;
+  @Column()
+  total_money_card: number;
 
-  @CreateDateColumn()
-  updated_at: Date;
-
-  @OneToOne(() => Member)
+  @ManyToOne(() => Member, member => member.card)
+  @JoinColumn({ name: "member_id" })
   member: Member;
 
-  @ManyToMany(() => Staff, staff => staff.card, { nullable: true }) 
+  @ManyToMany(() => Staff, staff => staff.card, { nullable: true })
+  @JoinTable({ name: "staff_id" })
   staff: Staff;
 
   @ManyToMany(() => Packages, packages => packages.card)
+  @JoinTable({ name: "packages_id" })
   packages: Packages;
+
+  @ManyToOne(() => Classroom, classroom => classroom.card)
+  @JoinColumn({ name: "classroom_id" })
+  classroom: Classroom;
 }

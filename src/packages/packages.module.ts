@@ -5,7 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Packages } from './entities/packages.entity';
 import { ConfigModule } from '@nestjs/config';
 
-
 @Module({
     imports:[
         TypeOrmModule.forFeature([Packages]) ,
