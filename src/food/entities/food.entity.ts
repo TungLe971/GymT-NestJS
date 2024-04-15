@@ -23,6 +23,9 @@ export class Food {
     @Column({ nullable: true, default: 0 })
     gia_ban_food: number;
 
+    @Column({ nullable: true, default: 0 })
+    total_money_food: number;
+
     @Column({ nullable: true, default: '...'})
     note_food: string;   
 

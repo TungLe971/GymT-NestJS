@@ -21,6 +21,5 @@ export class CreateCardDto {
 
     classroom: Classroom;
     
-    @IsNotEmpty()
     packages: Packages;  
 }

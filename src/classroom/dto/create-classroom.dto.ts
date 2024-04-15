@@ -20,6 +20,4 @@ export class CreateClassroomDto {
 
 	@IsNotEmpty()
 	staff: Staff;
-
-	card: Card;
 }

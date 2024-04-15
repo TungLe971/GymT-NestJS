@@ -11,5 +11,7 @@ export class UpdateFoodDto {
 
     gia_ban_food: number;
 
+    total_money_food: number;
+
     note_food: string;   
 }

@@ -29,11 +29,11 @@ export class Card {
   @JoinTable({ name: "staff_id" })
   staff: Staff;
 
-  @ManyToMany(() => Packages, packages => packages.card)
+  @ManyToMany(() => Packages, packages => packages.card, { nullable: true })
   @JoinTable({ name: "packages_id" })
   packages: Packages;
 
-  @ManyToOne(() => Classroom, classroom => classroom.card)
+  @ManyToOne(() => Classroom, classroom => classroom.card, { nullable: true })
   @JoinColumn({ name: "classroom_id" })
   classroom: Classroom;
 }

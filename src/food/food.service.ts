@@ -22,7 +22,7 @@ export class FoodService {
             ],
             take: items_per_page,
             skip: skip,
-            select: ['id_food', 'name_food','loai_food','gia_nhap_food','gia_ban_food','so_luong_con_food','so_luong_nhap_food','note_food', 'ngay_tao_food', 'ngay_cap_nhap_food']
+            select: ['id_food', 'name_food','loai_food','gia_nhap_food', 'total_money_food','gia_ban_food','so_luong_con_food','so_luong_nhap_food','note_food', 'ngay_tao_food', 'ngay_cap_nhap_food']
         });
         const lastPage = Math.ceil(total / items_per_page);
         const nextPage = page + 1 > lastPage ? null : page + 1;
@@ -49,7 +49,9 @@ export class FoodService {
     }
 
     async update(id_food: number, updateFoodDto: UpdateFoodDto): Promise<UpdateResult> {
-        return await this.foodRepository.update(id_food, updateFoodDto);
+        const total_money_food = updateFoodDto.gia_ban_food * (updateFoodDto.so_luong_nhap_food - updateFoodDto.so_luong_con_food) - updateFoodDto.gia_nhap_food * updateFoodDto.so_luong_nhap_food;
+        const updatedFood = { ...updateFoodDto, total_money_food };
+        return await this.foodRepository.update(id_food, updatedFood);
     }
 
     async delete(id_food: number): Promise<DeleteResult> {

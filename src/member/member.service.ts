@@ -15,11 +15,19 @@ export class MemberService {
         const page = Number(query.page) || 1;
         const skip = (page - 1) * items_per_page;
         const keyword = query.search || '';
+        const id_hv = Number(query.id_hv) || null; 
+        const whereConditions: any = {};
+
+        if (keyword) {
+            whereConditions.name_hv = Like('%' + keyword + '%');
+        }
+        
+        if (id_hv) {
+            whereConditions.id_hv = id_hv;
+        }
+
         const [members, total] = await this.memberRepository.findAndCount({
-            where: [
-                { name_hv: Like('%' + keyword + '%') },
-                { email_hv: Like('%' + keyword + '%') }
-            ],
+            where: whereConditions, 
             take: items_per_page,
             skip: skip,
             select: ['id_hv', 'name_hv', 'email_hv', 'ngay_sinh_hv', 'gioi_tinh_hv', 'tuoi_hv', 'sdt_hv', 'tcccd_hv', 'bien_xe_hv', 'diem_tich_luy','chieu_cao','can_nang','phan_tram_mo', 'ngay_tao_hv', 'ngay_cap_nhap_hv']

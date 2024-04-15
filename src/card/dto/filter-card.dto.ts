@@ -6,6 +6,8 @@ export class FilterCardDto {
 
     search:number;
 
+    id_card: number;
+
     member:string;
 
     staff:string;
