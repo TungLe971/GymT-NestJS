@@ -5,7 +5,7 @@ export class UpdateFoodDto {
 
     so_luong_con_food: number;
 
-    loai_food: string;
+    loai_food: number;
 
     gia_nhap_food: number;
 

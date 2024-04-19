@@ -30,9 +30,9 @@ export class CardController {
     }
 
     @UseGuards(AuthGuard)
-    @Post(':hvId/:classroomId/:nvId/:packagesId')
-    create(@Param('hvId') hvId: string, @Param('hvId') classroomId: string, @Param('nvId') nvId: string, @Param('packagesId') packagesId: string, @Body() createCardDto: CreateCardDto): Promise<Card> {
-        return this.cardService.create(Number(hvId),  Number(classroomId), Number(nvId), Number(packagesId), createCardDto);
+    @Post('')
+    create( @Body() createCardDto: CreateCardDto): Promise<Card> {
+        return this.cardService.create (createCardDto);
     }
 
     @UseGuards(AuthGuard)

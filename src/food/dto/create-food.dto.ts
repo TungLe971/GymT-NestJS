@@ -3,7 +3,7 @@ export class CreateFoodDto {
 
     so_luong_nhap_food: number;
 
-    loai_food: string;
+    loai_food: number;
 
     gia_nhap_food: number;
 

@@ -1,6 +1,4 @@
-import { IsNotEmpty } from "class-validator";
-import { Card } from "src/card/entities/card.entity";
-import { Staff } from "src/staff/entities/staff.entity";
+
 
 export class CreateClassroomDto {
     
@@ -18,6 +16,6 @@ export class CreateClassroomDto {
 
     status: number;
 
-	@IsNotEmpty()
-	staff: Staff;
+	staff_id: number;
+
 }

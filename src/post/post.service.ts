@@ -28,7 +28,7 @@ export class PostService {
     }
 
     async findAll(query: FilterPostDto): Promise<any> {
-        const items_per_page = Number(query.items_per_page) || 10;
+        const items_per_page = Number(query.items_per_page) || 20;
         const page = Number(query.page) || 1;
         const search = query.search || '';
         const category = Number(query.category) || null;

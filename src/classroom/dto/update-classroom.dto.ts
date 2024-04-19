@@ -1,5 +1,4 @@
-import { Card } from "src/card/entities/card.entity";
-import { Staff } from "src/staff/entities/staff.entity";
+
 
 export class UpdateClassroomDto {
     
@@ -17,7 +16,6 @@ export class UpdateClassroomDto {
 
     status: number;
 
-	staff: Staff;
+	staff_id: number;
 
-	card: Card;
 }

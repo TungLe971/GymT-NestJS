@@ -15,7 +15,7 @@ export class Food {
     so_luong_con_food: number;
     
     @Column()
-    loai_food: string;
+    loai_food: number;
 
     @Column()
     gia_nhap_food: number;

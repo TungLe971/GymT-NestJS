@@ -13,7 +13,7 @@ export class Staff {
     @Column()
     gioi_tinh_nv: string;
 
-    @Column({ type: "date" })
+    @Column()
     ngay_sinh_nv: Date;
 
     @Column()

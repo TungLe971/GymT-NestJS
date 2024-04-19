@@ -21,10 +21,10 @@ export class Classroom{
     @Column()
 	thoi_luong_classroom: number;
 
-    @Column({ type: "date" })
+    @Column()
     ngay_start: Date;
 
-    @Column({ type: "date" })
+    @Column()
     ngay_end: Date;
 
     @Column({ type:"int", default: 1 })
@@ -36,11 +36,11 @@ export class Classroom{
     @UpdateDateColumn()
     ngay_cap_nhap_classroom: Date;
 
-    @ManyToOne(() => Staff, staff => staff.classroom)
+    @ManyToOne(() => Staff, staff => staff.classroom, { nullable: true })
     @JoinColumn({ name: "staff_id" })
     staff: Staff;
 
-    @OneToMany(() => Card, card => card.classroom)
+    @OneToMany(() => Card, card => card.classroom, { nullable: true })
     card: Card;
   
 }

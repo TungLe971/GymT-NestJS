@@ -14,7 +14,7 @@ import { CardModule } from './card/card.module';
 // import { EventModule } from './event/event.module';
 // import { SalaryModule } from './salary/salary.module';
 import { FoodModule } from './food/food.module';
-// import { EquipmentModule } from './equipment/equipment.module';
+import { EquipmentModule } from './equipment/equipment.module';
 // import { GiftModule } from './gift/gift.module';
 import { NotificationModule } from './notification/notification.module';
 import { PackagesModule } from './packages/packages.module';
@@ -33,7 +33,7 @@ import { ClassroomModule } from './classroom/classroom.module';
     // EventModule,
     // SalaryModule,
     FoodModule,
-    // EquipmentModule,
+    EquipmentModule,
     // GiftModule,
     ClassroomModule,
     NotificationModule,

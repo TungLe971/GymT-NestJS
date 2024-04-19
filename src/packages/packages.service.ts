@@ -11,7 +11,7 @@ export class PackagesService {
     constructor(@InjectRepository(Packages) private packagesRepository: Repository<Packages>) { }
 
     async findAll(query: FilterPackagesDto): Promise<any> {
-        const items_per_page = Number(query.items_per_page) || 6;
+        const items_per_page = Number(query.items_per_page) || 20;
         const page = Number(query.page) || 1;
         const skip = (page - 1) * items_per_page;
         const keyword = query.search || '';

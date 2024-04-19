@@ -16,12 +16,12 @@ export class ClassroomService {
         @InjectRepository(Card) private cardRepository: Repository<Card>,
     ) { }
     async findAll(query: FilterClassroomDto): Promise<any> {
-        const items_per_page = Number(query.items_per_page) || 6;
+        const items_per_page = Number(query.items_per_page) || 20;
         const page = Number(query.page) || 1;
         const skip = (page - 1) * items_per_page;
         const keyword = query.search || '';
        
-            select: ['id_classroom', 'name_classroom','so_luong_classroom', 'day_classroom','thoi_luong_classroom', 'status', 'ngay_start', 'ngay_end', 'card', 'staff', 'ngay_tao_classroom', 'ngay_cap_nhap_classroom']
+            select: ['id_classroom', 'name_classroom','so_luong_classroom', 'day_classroom','thoi_luong_classroom', 'status', 'ngay_start', 'ngay_end', 'ngay_tao_classroom', 'ngay_cap_nhap_classroom']
        
         const [res, total] = await this.classroomRepository.findAndCount({
 
@@ -30,7 +30,7 @@ export class ClassroomService {
             ],
             take: items_per_page,
             skip: skip,
-            relations: ['card', 'staff'],
+            relations: {card: true, staff: true},
             select: {
                 card: {
                     id_card: true
@@ -74,19 +74,8 @@ export class ClassroomService {
         })
     }
 
-    async create(cardId: number, nvId: number, createClassroomDto: CreateClassroomDto): Promise<Classroom> {
-        const staff = await this.staffRepository.findOneBy({ id_nv: nvId });
-        const card = await this.cardRepository.findOneBy({ id_card: cardId });
-        try {
-            const classroom = await this.classroomRepository.create({
-                ...createClassroomDto, card, staff
-            })
-            const res = await this.classroomRepository.save(classroom);
-            return await this.classroomRepository.findOneBy({ id_classroom: res.id_classroom });
-
-        } catch (error) {
-            throw new HttpException('Can not create card', HttpStatus.BAD_REQUEST);
-        }
+    async create(createClassroomDto: CreateClassroomDto): Promise<Classroom> {
+        return await this.classroomRepository.save(createClassroomDto);
     }
 
     async update(id_classroom: number, updateClassroomDto: UpdateClassroomDto): Promise<UpdateResult> {

@@ -1,8 +1,4 @@
 import { IsNotEmpty } from "class-validator";
-import { Classroom } from "src/classroom/entities/classroom.entity";
-import { Member } from "src/member/entities/member.entity";
-import { Packages } from "src/packages/entities/packages.entity";
-import { Staff } from "src/staff/entities/staff.entity";
 
 export class CreateCardDto {
     
@@ -15,11 +11,11 @@ export class CreateCardDto {
     total_money_card: number;
     
     @IsNotEmpty()
-    member: Member;
+    member: number;
   
-    staff: Staff;
+    staff: number;
 
-    classroom: Classroom;
+    classroom: number;
     
-    packages: Packages;  
+    packages: number;  
 }

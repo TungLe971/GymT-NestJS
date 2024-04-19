@@ -10,7 +10,7 @@ export class Member {
     @Column()
     name_hv: string;
 
-    @Column({ type: "date" })
+    @Column()
     ngay_sinh_hv: Date;
 
     @Column()

@@ -11,14 +11,13 @@ export class FoodService {
     constructor(@InjectRepository(Food) private foodRepository: Repository<Food>) { }
 
     async findAll(query: FilterFoodDto): Promise<any> {
-        const items_per_page = Number(query.items_per_page) || 6;
+        const items_per_page = Number(query.items_per_page) || 20;
         const page = Number(query.page) || 1;
         const skip = (page - 1) * items_per_page;
         const keyword = query.search || '';
         const [foods, total] = await this.foodRepository.findAndCount({
             where: [
-                { name_food: Like('%' + keyword + '%') },
-                { loai_food: Like('%' + keyword + '%') }
+                { name_food: Like('%' + keyword + '%') }
             ],
             take: items_per_page,
             skip: skip,

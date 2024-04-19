@@ -24,40 +24,23 @@ export class CardService {
         @InjectRepository(Card)
         private cardRepository: Repository<Card>,
     ) { }
-
-    async create(hvId: number, nvId: number, packagesId: number, classroomId: number, createCardDto: CreateCardDto): Promise<Card> {
-        const member = await this.memberRepository.findOneBy({ id_hv: hvId });
-        const staff = await this.staffRepository.findOneBy({ id_nv: nvId });
-        const packages = await this.packagesRepository.findOneBy({ id_packages: packagesId });
-        const classroom = await this.classroomRepository.findOneBy({ id_classroom: classroomId });
-        try {
-            const card = await this.cardRepository.create({
-                ...createCardDto, member, staff, packages, classroom
-            })
-            const res = await this.cardRepository.save(card);
-            return await this.cardRepository.findOneBy({ id_card: res.id_card });
-
-        } catch (error) {
-            throw new HttpException('Can not create card', HttpStatus.BAD_REQUEST);
-        }
-    }
     
     async findAll(query: FilterCardDto): Promise<any> {
-        const itemsPerPage: number = Number(query.items_per_page) || 10;
+        const itemsPerPage: number = Number(query.items_per_page) || 20;
         const page: number = Number(query.page) || 1;
         const search: number = query.search || 0;
         // const member = Number(query.member);
         // const staff = Number(query.staff) || null;
         // const packages = Number(query.packages);
-
+        
         const skip: number = (page - 1) * itemsPerPage;
         const [res, total] = await this.cardRepository.findAndCount({
-
+            
             where: search !== 0 ? { id_card: search } : {},
             
             take: itemsPerPage,
             skip: skip,
-            relations: ['member', 'staff', 'packages', 'classroom'],
+            relations: {member: true, staff: true, packages: true, classroom: true},
             select: {
                 member: {
                     id_hv: true,
@@ -79,12 +62,12 @@ export class CardService {
                 }
             }
         })
-
-
+        
+        
         const lastPage: number = Math.ceil(total / itemsPerPage);
         const nextPage: number | null = page + 1 > lastPage ? null : page + 1;
         const prevPage: number | null = page - 1 < 1 ? null : page - 1;
-
+        
         return {
             data: res,
             total,
@@ -94,7 +77,7 @@ export class CardService {
             lastPage
         };
     }
-
+    
     async findDetail(id_card: number): Promise<Card> {
         return await this.cardRepository.findOne({
             where: { id_card },
@@ -121,15 +104,19 @@ export class CardService {
             }
         })
     }
-
+    
+        async create(createCardDto: CreateCardDto): Promise<Card> {
+            return await this.cardRepository.save(createCardDto);
+        }
+    
     async update(id_card: number, updateCardDto: UpdateCardDto): Promise<UpdateResult> {
         return await this.cardRepository.update(id_card, updateCardDto);
     }
-
+    
     async delete(id_card: number): Promise<DeleteResult> {
         return await this.cardRepository.delete(id_card);
     }
-
+    
     async deleteMultiple(id_cards: number[]): Promise<DeleteResult> {
         return await this.cardRepository.delete({ id_card: In(id_cards) });
     }

@@ -11,7 +11,7 @@ export class NotificationService {
     constructor(@InjectRepository(Notification) private notificationRepository: Repository<Notification>) { }
 
     async findAll(query: FilterNotificationDto): Promise<any> {
-        const items_per_page = Number(query.items_per_page) || 6;
+        const items_per_page = Number(query.items_per_page) || 20;
         const page = Number(query.page) || 1;
         const skip = (page - 1) * items_per_page;
         const keyword = query.search || '';
@@ -19,6 +19,7 @@ export class NotificationService {
             where: [
                 { title_n: Like('%' + keyword + '%') },
             ],
+            order: { ngay_cap_nhap_n: "DESC" },
             take: items_per_page,
             skip: skip,
             select: ['id_n', 'title_n','noi_dung_n','status_n', 'ngay_tao_n', 'ngay_cap_nhap_n']

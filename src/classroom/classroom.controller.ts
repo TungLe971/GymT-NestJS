@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseArrayPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, ParseArrayPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { ClassroomService } from './classroom.service';
 import { Classroom } from './entities/classroom.entity';
 import { AuthGuard } from 'src/auth/auth.guard';
@@ -26,13 +26,16 @@ export class ClassroomController {
     @UseGuards(AuthGuard)
     @Get(':id_classroom')
     findOne(@Param('id_classroom') id_classroom: string): Promise<Classroom> {
+        if (!id_classroom) {
+            throw new NotFoundException('Classroom not found');
+        }
         return this.classroomService.findDetail(Number(id_classroom));
     }
 
     @UseGuards(AuthGuard)
-    @Post(':cardId/:nvId')
-    create(@Param('cardId') cardId: number, @Param('nvId') nvId: number, @Body() createClassroomDto: CreateClassroomDto): Promise<Classroom> {
-        return this.classroomService.create(cardId, nvId, createClassroomDto);
+    @Post('')
+    create( @Body() createClassroomDto: CreateClassroomDto): Promise<Classroom> {
+        return this.classroomService.create( createClassroomDto);
     }
 
     @UseGuards(AuthGuard)
