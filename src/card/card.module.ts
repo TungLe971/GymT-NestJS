@@ -12,7 +12,7 @@ import { Classroom } from 'src/classroom/entities/classroom.entity';
 
 @Module({
   imports:[
-    TypeOrmModule.forFeature([Card, Member, Staff, Packages,Classroom]),
+    TypeOrmModule.forFeature([Card, Member, Staff, Packages, Classroom]),
     ConfigModule
 
   ],

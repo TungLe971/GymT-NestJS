@@ -50,7 +50,7 @@ export class Member {
     ngay_cap_nhap_hv: Date;
 
     @OneToMany(() => Card, card => card.member)
-    card: Card[];
+    card: Card;
 
     @OneToOne(() => User)
     user: User;

@@ -1,10 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateCardDto } from './dto/create-card.dto';
 import { FilterCardDto } from './dto/filter-card.dto';
-import { UpdateCardDto } from './dto/update-card.dto';
 import { Card } from './entities/card.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository, UpdateResult, In } from 'typeorm';
+import { DeleteResult, Repository, In } from 'typeorm';
 import { Member } from '../member/entities/member.entity';
 import { Packages } from '../packages/entities/packages.entity';
 import { Staff } from '../staff/entities/staff.entity';
@@ -30,8 +29,6 @@ export class CardService {
         const page: number = Number(query.page) || 1;
         const search: number = query.search || 0;
         // const member = Number(query.member);
-        // const staff = Number(query.staff) || null;
-        // const packages = Number(query.packages);
         
         const skip: number = (page - 1) * itemsPerPage;
         const [res, total] = await this.cardRepository.findAndCount({
@@ -81,7 +78,7 @@ export class CardService {
     async findDetail(id_card: number): Promise<Card> {
         return await this.cardRepository.findOne({
             where: { id_card },
-            relations: ['member', 'staff', 'packages','classroom'],
+            relations: ['member', 'staff', 'packages', 'classroom'],
             select: {
                 member: {
                     id_hv: true,
@@ -105,12 +102,8 @@ export class CardService {
         })
     }
     
-        async create(createCardDto: CreateCardDto): Promise<Card> {
-            return await this.cardRepository.save(createCardDto);
-        }
-    
-    async update(id_card: number, updateCardDto: UpdateCardDto): Promise<UpdateResult> {
-        return await this.cardRepository.update(id_card, updateCardDto);
+    async create(createCardDto: CreateCardDto): Promise<Card> {
+        return await this.cardRepository.save(createCardDto);
     }
     
     async delete(id_card: number): Promise<DeleteResult> {

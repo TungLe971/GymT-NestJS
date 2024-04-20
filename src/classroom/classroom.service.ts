@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Classroom } from './entities/classroom.entity';
 import { Repository, DeleteResult, In, Like, UpdateResult } from 'typeorm';

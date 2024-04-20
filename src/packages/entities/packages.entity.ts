@@ -23,5 +23,5 @@ export class Packages{
     ngay_cap_nhap_packages: Date;
 
     @OneToMany(() => Card, card => card.packages)
-    card: Card[];
+    card: Card;
 }

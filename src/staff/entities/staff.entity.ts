@@ -44,7 +44,7 @@ export class Staff {
     ngay_cap_nhap_nv: Date;
 
     @OneToMany(() => Card, card => card.staff)
-    card: Card[];
+    card: Card;
 
     @OneToMany(() => Classroom, classroom => classroom.staff)
     classroom: Classroom[];

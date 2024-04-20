@@ -35,7 +35,7 @@ export class ClassroomController {
     @UseGuards(AuthGuard)
     @Post('')
     create( @Body() createClassroomDto: CreateClassroomDto): Promise<Classroom> {
-        return this.classroomService.create( createClassroomDto);
+        return this.classroomService.create(createClassroomDto);
     }
 
     @UseGuards(AuthGuard)
