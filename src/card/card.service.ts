@@ -8,6 +8,7 @@ import { Member } from '../member/entities/member.entity';
 import { Packages } from '../packages/entities/packages.entity';
 import { Staff } from '../staff/entities/staff.entity';
 import { Classroom } from 'src/classroom/entities/classroom.entity';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
 export class CardService {
@@ -25,7 +26,7 @@ export class CardService {
     ) { }
     
     async findAll(query: FilterCardDto): Promise<any> {
-        const itemsPerPage: number = Number(query.items_per_page) || 20;
+        const itemsPerPage: number = Number(query.items_per_page) || 99;
         const page: number = Number(query.page) || 1;
         const search: number = query.search || 0;
         // const member = Number(query.member);
@@ -41,7 +42,9 @@ export class CardService {
             select: {
                 member: {
                     id_hv: true,
-                    name_hv: true
+                    name_hv: true,
+                    email_hv: true,
+                    sdt_hv: true
                 },
                 staff: {
                     id_nv: true,
@@ -82,7 +85,9 @@ export class CardService {
             select: {
                 member: {
                     id_hv: true,
-                    name_hv: true
+                    name_hv: true,
+                    email_hv: true,
+                    sdt_hv: true
                 },
                 staff: {
                     id_nv: true,
@@ -112,5 +117,19 @@ export class CardService {
     
     async deleteMultiple(id_cards: number[]): Promise<DeleteResult> {
         return await this.cardRepository.delete({ id_card: In(id_cards) });
+    }
+
+    @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+    async updateCardStatus() {
+        // Lấy tất cả các thẻ có ngày kết thúc nhỏ hơn hoặc bằng ngày hiện tại
+        const cardsToUpdate: Card[] = await this.cardRepository.createQueryBuilder("card")
+            .where("card.ngay_end <= :ngay_end", { ngay_end: new Date().toISOString().split('T')[0] }) 
+            .andWhere("card.status = :status", { status: 1 }) 
+            .getMany();
+
+        cardsToUpdate.forEach(async card => {
+            card.status = 0;
+            await this.cardRepository.save(card);
+        });
     }
 }

@@ -28,6 +28,11 @@ export class CardController {
         return this.cardService.findDetail(Number(id_card));
     }
 
+    @Get('update-status')
+    async updateCardStatus(): Promise<void> {
+        await this.cardService.updateCardStatus();
+    }
+    
     @UseGuards(AuthGuard)
     @Post('')
     create( @Body() createCardDto: CreateCardDto): Promise<Card> {
