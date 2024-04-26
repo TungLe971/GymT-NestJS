@@ -3,12 +3,13 @@ import { CreateCardDto } from './dto/create-card.dto';
 import { FilterCardDto } from './dto/filter-card.dto';
 import { Card } from './entities/card.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository, In } from 'typeorm';
+import { DeleteResult, Repository, In, UpdateResult } from 'typeorm';
 import { Member } from '../member/entities/member.entity';
 import { Packages } from '../packages/entities/packages.entity';
 import { Staff } from '../staff/entities/staff.entity';
 import { Classroom } from 'src/classroom/entities/classroom.entity';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { UpdateCardDto } from './dto/update-card.dto';
 
 @Injectable()
 export class CardService {
@@ -117,6 +118,10 @@ export class CardService {
     
     async deleteMultiple(id_cards: number[]): Promise<DeleteResult> {
         return await this.cardRepository.delete({ id_card: In(id_cards) });
+    }
+
+    async update(id_card: number, updateCardDto: UpdateCardDto): Promise<UpdateResult> {
+        return await this.cardRepository.update(id_card, updateCardDto);
     }
 
     @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)

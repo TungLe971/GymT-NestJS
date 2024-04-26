@@ -7,7 +7,7 @@ import { dataSourceOptions } from 'db/data-source';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { PostModule } from './post/post.module';
-// import { CategoryModule } from './category/category.module';
+import { CategoryModule } from './category/category.module';
 import { MemberModule } from './member/member.module';
 import { StaffModule } from './staff/staff.module';
 import { CardModule } from './card/card.module';
@@ -26,7 +26,7 @@ import { ClassroomModule } from './classroom/classroom.module';
     AuthModule,
     ConfigModule.forRoot(),
     PostModule,
-    // CategoryModule,
+    CategoryModule,
     MemberModule,
     StaffModule,
     CardModule,

@@ -8,11 +8,11 @@ export class UpdateCardDto {
 
   total_money_card: number;
 
-  member: number;
+  member_id: number;
 
-  packages: number;  
+  packages_id: number;  
   
-  staff: number;
+  staff_id: number;
 
-  classroom: number;
+  classroom_id: number;
 }

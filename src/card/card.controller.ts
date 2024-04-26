@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, Param, ParseArrayPipe, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseArrayPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { CardService } from './card.service';
 import { Card } from './entities/card.entity';
 import { AuthGuard } from '../auth/auth.guard';
 import { CreateCardDto } from './dto/create-card.dto';
 import { FilterCardDto } from './dto/filter-card.dto';
 import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { UpdateCardDto } from './dto/update-card.dto';
 
 @ApiBearerAuth()
 @ApiTags('Cards')
@@ -37,6 +38,12 @@ export class CardController {
     @Post('')
     create( @Body() createCardDto: CreateCardDto): Promise<Card> {
         return this.cardService.create(createCardDto);
+    }
+
+    @UseGuards(AuthGuard)
+    @Put(':id_card')
+    update(@Param('id_card') id_card: string, @Body() updateCardDto: UpdateCardDto) {
+        return this.cardService.update(Number(id_card), updateCardDto);
     }
 
     @UseGuards(AuthGuard)

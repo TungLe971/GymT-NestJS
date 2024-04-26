@@ -1,5 +1,4 @@
 
-
 export class UpdateClassroomDto {
     
     name_classroom: string;
