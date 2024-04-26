@@ -27,7 +27,7 @@ export class CardService {
     ) { }
     
     async findAll(query: FilterCardDto): Promise<any> {
-        const itemsPerPage: number = Number(query.items_per_page) || 99;
+        const itemsPerPage: number = Number(query.items_per_page) || 20;
         const page: number = Number(query.page) || 1;
         const search: number = query.search || 0;
         // const member = Number(query.member);
