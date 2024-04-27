@@ -8,11 +8,4 @@ export class FilterCardDto {
 
     id_card: number;
 
-    member:string;
-
-    staff:string;
-
-    packages: string;
-
-    classroom: string;
 }

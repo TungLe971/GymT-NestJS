@@ -30,7 +30,6 @@ export class CardService {
         const itemsPerPage: number = Number(query.items_per_page) || 20;
         const page: number = Number(query.page) || 1;
         const search: number = query.search || 0;
-        // const member = Number(query.member);
         
         const skip: number = (page - 1) * itemsPerPage;
         const [res, total] = await this.cardRepository.findAndCount({
